@@ -1,0 +1,4 @@
+Your working folder (where fonts must be) is your build folder.
+Make sure the working folder in Projects->Build is not pointing to inside 
+	your application file.
+See screenshot
