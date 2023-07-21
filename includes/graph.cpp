@@ -5,8 +5,8 @@
 
 void Graph::Draw(sf::RenderWindow& window){
     shape = sf::CircleShape(1);
-    shape.setFillColor(sf::Color(177,221,241));	
-    // shape.setFillColor(sf::Color(255, 99, 97)); //Pink 		
+    // shape.setFillColor(sf::Color(177,221,241));	//Pink 
+    shape.setFillColor(sf::Color(255, 99, 97));			
     shape.setPosition(sf::Vector2f(WORK_PANEL/2, SCREEN_HEIGHT/2));
 
     //grid
@@ -54,12 +54,14 @@ void Graph::Update(int command){
         break;
     case 5: //zoom in
         info->zoom /= 2;
+        cout << "zoom now" << info->zoom << endl;
         if(info->zoom <= 0.15)
             info->zoom *= 2;
         needUpdate = true;
         break;
     case 6: //zoom out
         info->zoom *= 2;
+        cout << "zoom now" << info->zoom << endl;
         if(info->zoom >= 8.5)
             info->zoom /= 2;
         needUpdate = true;

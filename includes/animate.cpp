@@ -15,7 +15,7 @@ animate::animate(): info(new graph_info())
 
     cout<<"Loading font."<<endl;
 
-    if (!font.loadFromFile("arial.ttf")){
+    if (!font.loadFromFile("/Users/tammy/Documents/GitHub/99_00_final_project-TamSuj/arial.ttf")){
         cout<<"animate() CTOR: Font failed to load"<<endl;
         cin.get();
         exit(-1);
@@ -33,12 +33,6 @@ animate::animate(): info(new graph_info())
     myTextLabel.setFillColor(sf::Color::White);
     myTextLabel.setPosition(sf::Vector2f(125, SCREEN_HEIGHT-myTextLabel.getLocalBounds().height-30));
 
-    Domain = sf::Text("", font);
-    Domain.setCharacterSize(23);
-    Domain.setStyle(sf::Text::Bold);
-    Domain.setFillColor(sf::Color::White);
-    Domain.setPosition(sf::Vector2f(SCREEN_WIDTH-290, SCREEN_HEIGHT-myTextLabel.getLocalBounds().height-30));
-
     cout<<"animate instantiated successfully."<<endl;
 }
 
@@ -50,7 +44,6 @@ void animate::Draw(){
     //This is how you draw text:)
     window.draw(FunctionLabel);
     window.draw(myTextLabel);
-    window.draw(Domain);
 }
 
 void animate::update(){
@@ -132,9 +125,6 @@ void animate::processEvents()
                     info->set_equation(inputString);
                     myTextLabel.setString(info->equation);
                     break;
-                case sf::Keyboard::Semicolon:
-                    Domain.setString(info->get_domain());
-                    cout << "domain printed" << endl;
                 case sf::Keyboard::Escape:
                     window.close();
                 break;
@@ -149,7 +139,7 @@ void animate::processEvents()
         if (sidebar.handleEvent(window, event)) {
             command = 10;
             myTextLabel.setString(info->equation);
-        } 
+        }
     }
        
 }

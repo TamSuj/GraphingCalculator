@@ -24,7 +24,7 @@ private:
     sf::Text help_text;                 //used to tell user how to use calculator (which keyboard to press)
 
     sf::RectangleShape instruction;
-    sf::CircleShape helpButton;
+    sf::RectangleShape helpButton;
     sf::Text buttonText;
 
     bool help;

@@ -5,7 +5,6 @@
 #include "constants.h"
 #include <vector>
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
@@ -25,16 +24,6 @@ public:
         equation = Input;
         history.push_back(Input);
     }
-
-    string get_domain(){ 
-        double current_x = round(domain.x * zoom);
-        double current_y = round(domain.y * zoom);
-
-        string current_domain = "(" + to_string(current_x) + " , " + to_string(current_y) + ")";
-
-        return current_domain;
-    }
-
     void set_domain(float x, float y) {
         domain.x = x;
         domain.y = y;

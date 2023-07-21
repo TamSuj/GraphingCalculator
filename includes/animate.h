@@ -25,7 +25,6 @@ private:
     Sidebar sidebar;                    //rectangular message sidebar
 
     string inputString;
-    sf::Text Domain;
 
     graph_info* info;
 

@@ -154,10 +154,11 @@ vector<sf::Vector2f> plot::operator()(){
 
     RPN rpn(postfix);  
 
-    y_int = rpn(0.01) + info->shift.x;
+    y_int = rpn(0.1) + info->shift.x;
 
     //--------------------------------
     sf::Vector2f plot_domain = info->domain;
+    sf::Vector2f old_domain = plot_domain;
 
     plot_domain.x *= info->zoom;
     plot_domain.y *= info->zoom;
@@ -174,18 +175,24 @@ vector<sf::Vector2f> plot::operator()(){
         max = plot_domain.y + info->shift.x;
     }
 
-    for (float x = min ; x <= max; x += 0.003f) {
-        if(x != 0)
-        {
-            sf::Vector2f point(x * scale_factor, rpn(x) * scale_factor);
-        
-            //shift left/right/up/down
-            point.x += info->shift.x;
-            point.y += info->shift.y;
+    // if(max - min >= 2 && max - min <= 150)
+    // {    
+        for (float x = min ; x <= max; x += 0.003f) {
+            if(x != 0)
+            {
+                sf::Vector2f point(x * scale_factor, rpn(x) * scale_factor);
+            
+                //shift left/right/up/down
+                point.x += info->shift.x;
+                point.y += info->shift.y;
 
-            plot_points.push_back(toSFML(point));
+                plot_points.push_back(toSFML(point));
+            }
         }
-    }
+    //     info->points = plot_points;
+    // }else{
+    //     plot_points = info->points;
+    // }
 
     return plot_points;
 }
@@ -243,7 +250,7 @@ sf::VertexArray plot::generateAxis(){
 
     // Set the color of the lines to grey
     for (int i = 0; i < axis.getVertexCount(); i++) {
-        axis[i].color = sf::Color(219, 219, 219);
+        axis[i].color = sf::Color(176, 176, 176);
     }
 
     return axis;
@@ -257,43 +264,31 @@ sf::VertexArray plot::grid(){
     std::vector<double> grid_x;
     std::vector<double> grid_y;
 
-    //42.5
-    double grid_delta_x = (170 * info->zoom);
-    if(grid_delta_x > 170) { grid_delta_x = 170; }
-
-    // cout << "grid_delta_x: " << grid_delta_x << endl;
-
     // 1) from y-intercept to the right
-    for(double i = y_startPoint.x; i <= WORK_PANEL; i += grid_delta_x){
+    for(double i = y_startPoint.x; i <= WORK_PANEL; i += 42.5){
         grid_x.push_back(i);
     }
     // 2) from y-intercept to the left
-    for(double i = y_startPoint.x; i >= 0; i -= grid_delta_x){
+    for(double i = y_startPoint.x; i >= 0; i -= 42.5){
         grid_x.push_back(i);
     }
 
-    //grid on x-axis
     for (int i = 0; i < grid_x.size(); i++) {
         grid.append(sf::Vertex(sf::Vector2f(grid_x[i], 0)));
         grid.append(sf::Vertex(sf::Vector2f(grid_x[i], SCREEN_HEIGHT)));
     }
-    //calculate grid for y-axis
 
-    //35
-    double grid_delta_y = (140 * info->zoom);
-    if(grid_delta_y > 140) { grid_delta_y = 140; }
-    // cout << "grid_delta_y: " << grid_delta_y << endl;
-
+    //calculate tick for y-axis
     // 1) from y-intercept to the top
-    for(int i = y_startPoint.y; i <= SCREEN_HEIGHT; i += grid_delta_y){
+    for(int i = y_startPoint.y; i <= SCREEN_HEIGHT; i += 35){
         grid_y.push_back(i);
     }
     // 2) from y-intercept to the bottom
-    for(double i = y_startPoint.y; i >= 0; i -= grid_delta_y){
+    for(double i = y_startPoint.y; i >= 0; i -= 35){
         grid_y.push_back(i);
     }
 
-    //grid on y-axis
+    //ticks on y-axis
     for (int i = 0; i < grid_y.size(); i++) {
         grid.append(sf::Vertex(sf::Vector2f(0, grid_y[i])));
         grid.append(sf::Vertex(sf::Vector2f(WORK_PANEL, grid_y[i])));

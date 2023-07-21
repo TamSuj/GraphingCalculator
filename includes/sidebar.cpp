@@ -3,7 +3,10 @@
 
 Sidebar::Sidebar() {}
 
-Sidebar::Sidebar(float left, float width, graph_info *info_ptr) : _left(left), _width(width), info(info_ptr), help(false), buttonText("Help", font, 24), isButtonPressed(false) {
+Sidebar::Sidebar(float left, float width, graph_info *info_ptr) : _left(left), _width(width), info(info_ptr), help(false), buttonText("Help", font, 24), isButtonPressed(false), helpButton(sf::Vector2f(200, 50)) {
+//    info = info_ptr;
+
+    cout << "SIDE BAR.CPP " << info->equation << endl;
 
     cout << "Sidebar CTOR: TOP" << endl;
     items.reserve(50);
@@ -14,7 +17,7 @@ Sidebar::Sidebar(float left, float width, graph_info *info_ptr) : _left(left), _
     rect.setSize(sf::Vector2f(width, SCREEN_HEIGHT));
     cout << "Sidebar CTOR: about to load font." << endl;
 
-    if (!font.loadFromFile("Roboto-Thin.ttf")) {
+    if (!font.loadFromFile("/Users/tammy/Documents/GitHub/99_00_final_project-TamSuj/Roboto-Thin.ttf")) {
         cout << "Sidebar() CTOR: Font failed to load" << endl;
         cin.get();
         exit(-1);
@@ -43,12 +46,11 @@ Sidebar::Sidebar(float left, float width, graph_info *info_ptr) : _left(left), _
     //sb_text.setPosition(sf::Vector2f(10, SCREEN_HEIGHT-sb_text.getLocalBounds().height-5));
 
     items.push_back("History");
+    // items.push_back(info->equation);
     //Fill the items vector with empty strings so that we can use [] to read them:
     for (int i = 0; i < 30; i++) {
         items.push_back("");
     }
-    
-    helpButton.setPosition(sf::Vector2f(SCREEN_WIDTH - 80, SCREEN_HEIGHT - 80));
 
     cout << "Sidebar: CTOR: Exit." << endl;
 }
@@ -58,10 +60,10 @@ void Sidebar::draw(sf::RenderWindow &window) {
     const double LEFT_MARGIN = 15.0;
 
     window.draw(rect);
-    window.draw(helpButton);
+    // window.draw(helpButton);
 
-    // draw help_text if button is pressed
-    window.draw(help_text); 
+    //draw help_text if button is pressed
+    // window.draw(help_text); 
 
     float height = 10;
 
@@ -119,13 +121,13 @@ bool Sidebar::handleEvent(sf::RenderWindow &window, sf::Event event) {
             }
 
             //help button
-            if (mousePos.x >= _left + _width - 70 && mousePos.x <= _left + _width - 20 &&
-                mousePos.y >= SCREEN_HEIGHT - 70 && mousePos.y <= SCREEN_HEIGHT - 20) {
-                // display help text
-                help_text.setString("space: zoom in\nshift: zoom out\nClick on any key to enter input");
-                cout << "help key pressed" << endl;
-                // window.draw(help_text); // draw the help text
-            }
+            // if (mousePos.x >= _left + _width - 70 && mousePos.x <= _left + _width - 20 &&
+            //     mousePos.y >= SCREEN_HEIGHT - 70 && mousePos.y <= SCREEN_HEIGHT - 20) {
+            //     // display help text
+            //     help_text.setString("space: zoom in\nshift: zoom out\nClick on any key to enter input");
+            //     cout << "help key pressed" << endl;
+            //     // window.draw(help_text); // draw the help text
+            // }
         }
     }
     return false;

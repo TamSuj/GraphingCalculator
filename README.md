@@ -1,8 +1,30 @@
 
 # Work Report
 
-## Name: <ins> your name goes here </ins>
+## Name: <ins> Gayvalin Sujaritchai </ins>
 
+## Demo: <ins> [Demo video](https://youtu.be/E2HTr7HFVOc) </ins>
+
+#<ins> [2nd link](https://drive.google.com/file/d/1Iu0tydqs1UXKQJa_BgiyW7ATssXzGC00/view?usp=share_link) <ins>
+
+# How to use the calculator
+- Zoom:
+    - Zoom out: Space
+    - Zoom in: Right shift or Left control
+    
+- Zoom / pan:  
+    Key location: buttom right of the keyboard
+    - Pan left: Left arrow key 
+    - Pan right: Right arrow key
+    - Pan up: Up arrow key
+    - Pan down: Down arrow key
+<br><br>
+- Insert input:
+    - Direct type on the keyboard
+<br><br>    
+- History:
+    - Directly click on the desired function
+<br><br>
 ## Features:
 
 - Not Implemented:
@@ -11,40 +33,9 @@
 <br><br>
 
 - Implemented:
-  - what has been implemented
+  - Zoom in/out
+  - Pan left/right/up/down
+  - Grid and axis
 
 <br><br>
-
-- Partly implemented:
-  - what features have not been implemented
-
-<br><br>
-
-- Bugs
-  - Known bugs
-
-<br><br>
-
-# Reflections:
-
-- Any thoughts you may have and would like to share.
-
-# **output**
-<pre>
-<br/><br/><br/><br/>
-## Delete this line and paste the output of your basic test and then testB here
-</pre>
-
-
-<br/><br/>
-
-# basic_test.cpp output:
-<pre>
-<br/><br/><br/><br/>
-</pre>
-# testB.cpp output:
-<pre>
-<br/><br/><br/><br/>
-</pre>
-
 
